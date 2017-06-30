@@ -1,28 +1,21 @@
 package fi.haagahelia.course.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
 public class Student {
 	private long id;	 
 	private String firstName;	
-	private String lastName;
-	private String department;    
+	private String lastName;    
     private String email;    
-    
-	private Set<Course> courses = new HashSet<Course>(0);    
-    
+     
     public Student() {
     }
 
-	public Student(String firstName, String lastName, String department, String email) {
+	public Student(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.department = department;
 		this.email = email;
 	}
 
@@ -54,15 +47,6 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-    @Column(name = "department")
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
     @Column(name = "email")	
     public String getEmail() {
 		return email;
@@ -71,23 +55,5 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}	
-
-	@ManyToMany(cascade = CascadeType.MERGE)
-	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "courseid") })
-	public Set<Course> getCourses() {
-		return this.courses;
-	}
-
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
 	
-	public boolean hasCourse(Course course) {
-		for (Course studentCourse: getCourses()) {
-			if (studentCourse.getCourseid() == course.getCourseid()) {
-				return true;
-			}
-		}
-		return false;
-	}	
 }

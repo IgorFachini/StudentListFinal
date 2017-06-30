@@ -44,7 +44,7 @@ public class CrudbootApplicationTests {
     
 	@Test
     public void addStudent() {
-		Student student = new Student("Test", "Student", "IT", "test@test.com");
+		Student student = new Student("Test", "Student", "test@test.com");
 		
 		studentRepository.save(student);
 		Student findStudent = studentRepository.findOne(student.getId());

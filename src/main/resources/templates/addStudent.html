@@ -3,7 +3,7 @@
 <head>
     <title>Add student</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>New student</h1>
@@ -14,9 +14,6 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="text" th:field="*{lastName}" class="form-control"
 				placeholder="Lastname" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<input type="text" th:field="*{department}" class="form-control"
-				placeholder="Department" />
 			<div style="clear: both; display: block; height: 10px;"></div>	
 			<input type="text" th:field="*{email}" class="form-control"
 				placeholder="Email" />
@@ -24,5 +21,6 @@
 			<input type="submit" class="btn btn-success" value="Save"></input>
 		</form>
 	</div>
+	
 </body>
 </html>
