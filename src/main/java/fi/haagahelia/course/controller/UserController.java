@@ -1,4 +1,4 @@
-package fi.haagahelia.course.web;
+package fi.haagahelia.course.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 import fi.haagahelia.course.domain.SignupForm;
-import fi.haagahelia.course.domain.User;
 import fi.haagahelia.course.domain.UserRepository;
+import fi.haagahelia.course.entity.User;
 
 @Controller
 public class UserController {

@@ -1,7 +1,7 @@
 package fi.haagahelia.course.service;
 
-import fi.haagahelia.course.domain.User;
 import fi.haagahelia.course.domain.UserRepository;
+import fi.haagahelia.course.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;

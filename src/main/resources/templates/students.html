@@ -5,7 +5,8 @@
 <title>Studentlist</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet"
-	th:href="@{/css/bootstrap.min.css}" />
+	th:href="@{css/bootstrap.min.css}" />
+
 </head>
 <body>
 	<div class="col-md-4">
@@ -29,6 +30,7 @@
 					<th sec:authorize="hasAuthority('ADMIN')">Call</th>
 					<th>Name</th>
 					<th>Email</th>
+					<th>Courses</th>
 					<th sec:authorize="hasAuthority('USER')">Actions</th>
 				</tr>
 				<tr th:each="student : ${students}">
@@ -37,7 +39,13 @@
 						th:value="${student.id}"></input></td>
 					<td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
 					<td th:text="${student.email}"></td>
+					<td><span th:each="course,iterStat : ${student.courses}">
+							<span th:text="${course.name}" /> <th:block
+								th:if="${!iterStat.last}">,</th:block>
+					</span></td>
 					<td sec:authorize="hasAuthority('USER')"><a
+						th:href="@{/addStudentCourse/{id}(id=${student.id})}"
+						class="btn btn-success btn-xs">Add Course</a><a
 						th:href="@{/edit/{id}(id=${student.id})}"
 						class="btn btn-success btn-xs">Edit</a> <a
 						th:href="@{/delete/{id}(id=${student.id})}"
@@ -50,7 +58,5 @@
 				class="btn btn-success">Do Call</button>
 		</div>
 	</form>
-
-	
 </body>
 </html>

@@ -1,17 +1,21 @@
 package fi.haagahelia.course;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import fi.haagahelia.course.domain.Student;
+import fi.haagahelia.course.domain.CourseRepository;
 import fi.haagahelia.course.domain.StudentRepository;
-import fi.haagahelia.course.domain.User;
 import fi.haagahelia.course.domain.UserRepository;
+import fi.haagahelia.course.entity.Course;
+import fi.haagahelia.course.entity.Student;
+import fi.haagahelia.course.entity.User;
 import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
 @EnableEmailTools
@@ -30,15 +34,28 @@ public class CrudbootApplication {
 	 * @return
 	 */
 	@Bean
-	public CommandLineRunner demo(StudentRepository repository, UserRepository urepository) {
+	public CommandLineRunner demo(StudentRepository repository, CourseRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			// save students
 			Student student1 = new Student("John", "Johnson", "john@john.com"); 
 			repository.save(new Student("Steve", "Stevens", "steve.stevent@st.com"));
 			repository.save(new Student("Mary", "Robinson", "mary@robinson.com"));
-			repository.save(new Student("Kate", "Keystone", "kate@kate.com"));
-			repository.save(new Student("Diana", "Doll", "diana@doll.com"));
-				
+			repository.save(new Student("Kate", "Keystone","kate@kate.com"));
+			repository.save(new Student("Diana", "Doll","diana@doll.com"));
+			
+			Course course1 = new Course("Programming Java");
+			Course course2 = new Course("Spring Boot basics");
+			crepository.save(new Course("Marketing 1"));
+			crepository.save(new Course("Marketing 2"));
+			
+			crepository.save(course1);
+			crepository.save(course2);
+			
+			Set<Course> courses = new HashSet<Course>();
+			courses.add(course1);
+			courses.add(course2);
+			
+			student1.setCourses(courses); 
 			repository.save(student1);
 
 			// Create users with BCrypt encoded password (user/user, admin/admin)

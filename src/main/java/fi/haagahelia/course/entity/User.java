@@ -1,4 +1,4 @@
-package fi.haagahelia.course.domain;
+package fi.haagahelia.course.entity;
 
 import javax.persistence.*;
 

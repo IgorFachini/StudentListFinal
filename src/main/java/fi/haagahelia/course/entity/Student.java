@@ -1,4 +1,7 @@
-package fi.haagahelia.course.domain;
+package fi.haagahelia.course.entity;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -6,9 +9,11 @@ import javax.persistence.*;
 public class Student {
 	private long id;	 
 	private String firstName;	
-	private String lastName;    
+	private String lastName;   
     private String email;    
-     
+    
+	private Set<Course> courses = new HashSet<Course>(0);    
+    
     public Student() {
     }
 
@@ -47,6 +52,7 @@ public class Student {
 		this.lastName = lastName;
 	}
 
+ 
     @Column(name = "email")	
     public String getEmail() {
 		return email;
@@ -55,5 +61,23 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}	
+
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "courseid") })
+	public Set<Course> getCourses() {
+		return this.courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
 	
+	public boolean hasCourse(Course course) {
+		for (Course studentCourse: getCourses()) {
+			if (studentCourse.getCourseid() == course.getCourseid()) {
+				return true;
+			}
+		}
+		return false;
+	}	
 }
