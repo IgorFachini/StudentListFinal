@@ -15,7 +15,13 @@ public class Student {
 	private Set<Course> courses = new HashSet<Course>(0);    
     
     public Student() {
+    	super();
     }
+    
+    public Student(long id) {
+		this();
+		this.id = id;
+	}
 
 	public Student(String firstName, String lastName, String email) {
 		super();

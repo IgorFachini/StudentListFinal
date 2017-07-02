@@ -30,7 +30,7 @@
 					<th sec:authorize="hasAuthority('ADMIN')">Call</th>
 					<th>Name</th>
 					<th>Email</th>
-					<th sec:authorize="hasAuthority('USER')">Courses</th>
+					<th>Courses</th>
 					<th sec:authorize="hasAuthority('USER')">Actions</th>
 				</tr>
 				<tr th:each="student : ${students}">

@@ -17,6 +17,12 @@ public class Course {
     private Set<Student> students;  
 
     public Course() {
+    	super();
+	}
+    
+    public Course(long courseid) {
+		this();
+		this.courseid = courseid;
 	}
 
 	public Course(String name) {
